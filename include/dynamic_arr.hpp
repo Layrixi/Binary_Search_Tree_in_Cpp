@@ -39,6 +39,7 @@ public:
 		clear();
 	}
 };
+
 template <typename T>
 T &dynamic_arr<T>::operator[](int i)
 {
