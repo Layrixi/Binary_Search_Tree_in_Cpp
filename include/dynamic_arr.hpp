@@ -5,85 +5,95 @@
 using namespace std;
 
 template <typename T>
-class dynamic_arr {
+class dynamic_arr
+{
 private:
 	void realocate();
+
 public:
 	int size;
 	int size_max;
-	T* arr;
+	T *arr;
 	bool reached_max();
 	void push(T obj);
-	//void return_elem(int i);
-	T& operator[](int);
-	friend ostream& operator<<(ostream& os, const dynamic_arr& tabliczka)
+	// void return_elem(int i);
+	T &operator[](int);
+	friend ostream &operator<<(ostream &os, const dynamic_arr &tabliczka)
 	{
 		for (int i = 0; i < (tabliczka.size - 1); i++)
 			os << tabliczka.arr[i] << endl;
-		//os << *tabliczka->arr[i] << endl;
+		// os << *tabliczka->arr[i] << endl;
 		return os;
 	}
 	void clear();
 	void bsort();
-	void swap(T& elem1, T& elem2);
+	void swap(T &elem1, T &elem2);
 	dynamic_arr()
 	{
 		size = 1;
 		size_max = 1;
-		arr = (T*)calloc(size, sizeof(T));
+		arr = (T *)calloc(size, sizeof(T));
 	}
 	~dynamic_arr()
 	{
 		clear();
 	}
 };
-template <typename T> T& dynamic_arr<T>::operator[](int i)
+
+template <typename T>
+T &dynamic_arr<T>::operator[](int i)
 {
 	return arr[i];
 }
 
-template <typename T> bool dynamic_arr<T>::reached_max()
+template <typename T>
+bool dynamic_arr<T>::reached_max()
 {
 	if (size + 1 > size_max)
 		return 1;
 	return 0;
 }
 
-template <typename T> void dynamic_arr<T>::realocate()
+template <typename T>
+void dynamic_arr<T>::realocate()
 {
-	arr = (T*)realloc(arr, size_max * 2 * sizeof(T));
+	arr = (T *)realloc(arr, size_max * 2 * sizeof(T));
 	size_max *= 2;
 }
 
-template <typename T> void dynamic_arr<T>::push(T obj)//add object at the end of the array
+template <typename T>
+void dynamic_arr<T>::push(T obj) // add object at the end of the array
 {
 	if (reached_max())
 		realocate();
-	arr[size-1] = obj;
+	arr[size - 1] = obj;
 	size += 1;
 }
 
-template <typename T> void dynamic_arr<T>::clear()//clear array of objects
+template <typename T>
+void dynamic_arr<T>::clear() // clear array of objects
 {
 	free(arr);
 	size = 1;
 	size_max = 1;
-	arr = (T*)calloc(size, sizeof(T));//no bo musi zaalokowaæ pamiec na cokolowiek
-
+	arr = (T *)calloc(size, sizeof(T)); // no bo musi zaalokowaï¿½ pamiec na cokolowiek
 }
-template <typename T> void dynamic_arr<T>::swap(T& elem1, T& elem2)
+template <typename T>
+void dynamic_arr<T>::swap(T &elem1, T &elem2)
 {
 	T pom = elem1;
 	elem1 = elem2;
 	elem2 = pom;
 }
-template <typename T> void dynamic_arr<T>::bsort()
+template <typename T>
+void dynamic_arr<T>::bsort()
 {
 	for (int i = 0; i < size - 1; i++)
-	{//nie dziala jeszcze bo cos pokickalem
-		for (int j = 0; j < size - 2; j++)//-2 by nie wyszedl poza index
+	{									   // nie dziala jeszcze bo cos pokickalem
+		for (int j = 0; j < size - 2; j++) //-2 by nie wyszedl poza index
 		{
-			if (arr[j] > arr[j + 1]) {
+			if (arr[j] > arr[j + 1])
+			{
 				swap(arr[j], arr[j + 1]);
 			}
 		}

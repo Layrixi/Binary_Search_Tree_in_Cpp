@@ -1,0 +1,26 @@
+# Compiled object files
+*.o
+*.so
+*.out
+*.a
+*.dylib
+
+# Executable files
+main
+
+# Build directories
+build/
+bin/
+
+# IDE-specific files and directories
+.vscode/
+*.suo
+*.sdf
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.user
+*.opensdf
+*.xcodeproj/
+*.xcworkspace/
+.DS_Store
